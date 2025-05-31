@@ -12,6 +12,10 @@ public class Subscription {
     }
 
     public String getSubscriptionId() { return subscriptionId; }
+    public void setSubscriptionId(String subscriptionId) { this.subscriptionId = subscriptionId; }
+
     public String getUrl() { return url; }
+    public void setUrl(String url) { this.url = url; }
+
     public NotificationPreference getPreference() { return preference; }
 }

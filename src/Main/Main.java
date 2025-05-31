@@ -8,7 +8,6 @@ public class Main {
         WebsiteMonitorService service = new WebsiteMonitorService();
 
         User nisa = new User("Nisa", 22, "nisa@example.com", "0987654321");
-        service.addUser(nisa);
 
         NotificationPreference pref = new NotificationPreference(
                 NotificationPreference.Frequency.DAILY,
@@ -16,8 +15,10 @@ public class Main {
                 "Website {url} has changed!"
         );
 
-        Subscription sub = new Subscription("sub1", "https://example.com", pref);
+// Nutzer als Observer registrieren
+        service.attach(nisa);
 
+        Subscription sub = new Subscription("sub1", "https://example.com", pref);
         service.registerSubscription(nisa, sub);
 
         service.checkAllSubscriptions(); // Simuliert eine Änderung und Benachrichtigung
