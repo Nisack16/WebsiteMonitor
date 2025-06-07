@@ -1,11 +1,14 @@
 package Main;
 
+import Service.ComparisonStrategy;
+import Service.HtmlComparisonStrategy;
 import Service.WebsiteMonitorService;
 import model.*;
 
 public class Main {
     public static void main(String[] args) {
-        WebsiteMonitorService service = new WebsiteMonitorService();
+        ComparisonStrategy strategy = new HtmlComparisonStrategy(); // oder SizeComparisonStrategy(), etc.
+        WebsiteMonitorService service = new WebsiteMonitorService(strategy);
 
         User nisa = new User("Nisa", 22, "nisa@example.com", "0987654321");
 

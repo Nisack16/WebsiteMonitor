@@ -17,6 +17,12 @@ public class WebsiteMonitorService implements Subject {
     private Map<String, String> previousWebsiteContents = new HashMap<>();
     private WebsiteContentChecker contentChecker = new WebsiteContentChecker();
 
+    // Exercise 6
+    private ComparisonStrategy comparisonStrategy;
+
+    public WebsiteMonitorService(ComparisonStrategy strategy) {
+        this.comparisonStrategy = strategy;
+    }
 
     // zum hinzufügen eines Observers
     @Override
@@ -63,11 +69,11 @@ public class WebsiteMonitorService implements Subject {
         String currentContent = contentChecker.fetchWebsiteContent(url);
         String previousContent = previousWebsiteContents.get(url);
 
-        boolean changed = previousContent == null || !previousContent.equals(currentContent);
-
-        previousWebsiteContents.put(url, currentContent); // neuen Inhalt speichern
+        boolean changed = comparisonStrategy.hasChanged(previousContent, currentContent);
+        previousWebsiteContents.put(url, currentContent);
         return changed;
     }
+
 
     private Notification generateNotification(Subscription sub, NotificationPreference.Channel channel) {
         String msg = "Website updated: " + sub.getUrl();
