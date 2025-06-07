@@ -20,7 +20,6 @@ public class Main {
 
         Subscription sub = new Subscription("sub1", "https://example.com", pref);
         service.registerSubscription(nisa, sub);
-
         service.checkAllSubscriptions(); // Simuliert eine Änderung und Benachrichtigung
     }
 }
